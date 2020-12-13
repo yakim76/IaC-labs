@@ -23,3 +23,6 @@
 hs_err_pid*
 .idea/*
 *private*.conf
+.terraform*
+terraform.tfstate*
+private.backend.tf
