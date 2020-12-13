@@ -1,0 +1,32 @@
+AWSTemplateFormatVersion: "2010-09-09"
+Description: All for s3 terraform backend
+Metadata:
+  AWS::CloudFormation::Interface:
+    ParameterGroups:
+      - Label:
+          default: 'parameters'
+        Parameters:
+          - BucketName
+Parameters:
+  BucketName:
+    Description: "Bucket for s3 terraform backend"
+    Type: String
+
+Resources:
+  backendBucket:
+    Type: AWS::S3::Bucket
+    DeletionPolicy: Retain
+    Properties:
+      BucketName: !Sub "${BucketName}-${AWS::AccountId}-${AWS::Region}"
+      PublicAccessBlockConfiguration:
+        BlockPublicAcls: true
+        BlockPublicPolicy: true
+        IgnorePublicAcls: true
+        RestrictPublicBuckets: true
+      VersioningConfiguration:
+        Status: Enabled
+
+Outputs:
+  tfStates3Bucket:
+    Description: "tfStates3Bucket"
+    Value: !Ref backendBucket
