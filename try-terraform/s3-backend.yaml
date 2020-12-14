@@ -26,6 +26,18 @@ Resources:
       VersioningConfiguration:
         Status: Enabled
 
+  lockTable:
+    Type: AWS::DynamoDB::Table
+    Properties:
+      TableName: terraform-locktable
+      AttributeDefinitions:
+        - AttributeName: LockID
+          AttributeType: S
+      KeySchema:
+        - AttributeName: LockID
+          KeyType: HASH
+      BillingMode: PAY_PER_REQUEST
+
 Outputs:
   tfStates3Bucket:
     Description: "tfStates3Bucket"

@@ -6,6 +6,7 @@
 //    key    = "Specify your key here"
 //    region = "Specify your region here"
 //    profile = "your aws profile"
+//    dynamodb_table = "terraform-locktable"
 //  }
 //}
 
